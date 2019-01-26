@@ -14,6 +14,8 @@
 #![allow(clippy::cargo)]
 #![allow(clippy::unreadable_literal)]
 
+mod packet;
+
 extern crate byteorder;
 extern crate chrono;
 extern crate crc;

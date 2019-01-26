@@ -16,3 +16,6 @@ travis-ci = {repository = "mtreinish/subunit-rust"}
 chrono = "0.4"
 byteorder = "1"
 crc = "^1.0.0"
+
+[dependencies.pnet]
+version = "0.21.0"
