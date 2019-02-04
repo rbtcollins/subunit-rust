@@ -1,0 +1,58 @@
+use pnet_macros_support::types::*;
+use pnet::packet::PrimitiveValues;
+
+ enum TestStatus {
+   Undefined = 0,
+   Enumeration = 1,
+   InProgress = 2,
+   Success = 3,
+   UnexpectedSuccess = 4,
+   Skip = 5,
+   Failure = 6,
+   ExpectedFailure = 7,
+ }
+
+#[packet]
+pub struct Subunit {
+    // byte 0
+    pub signature: u8,
+    // byte 1
+    pub version: u4,
+    pub test_id_present: u1,
+    pub routing_code_present: u1,
+    pub timestamp_present: u1,
+    pub runnable: u1,
+    // byte 2
+    pub tags_present: u1,
+    pub file_content_present: u1,
+    pub file_mime_present: u1,
+    pub eof: u1,
+    pub reserved: u1,
+    pub test_status: u3,  // bitfield time?
+    // byte 3
+    length: ,
+    #[length_fn = "timestamp_length"]
+    pub timestamp: Vec<u8>,
+    #[length_fn = "testid_length"]
+    pub testid: Vec<u8>,
+    #[length_fn = "tags_length"]
+    pub tags: Vec<u8>,
+    #[length_fn = "mime_length"]
+    pub mime: Vec<u8>,
+    #[length_fn = "file_length"]
+    pub file: Vec<u8>,
+    #[length_fn = "routingcode_length"]
+    pub routing_code: Vec<u8>,
+    pub crc: u32be
+//     //kind: u16he, // NOOP | ERROR | DONE | OVERRUN
+//     #[construct_with(u16he)] flags: NetlinkMsgFlags,
+//     seq: u32he,
+//     pid: u32he,
+//     #[payload]
+//     #[length_fn = "payload_length"]
+//     payload: Vec<u8>,
+}
+
+fn payload_length(pkt: &SubunitPacket) -> usize {
+    pkt.get_length() as usize - 16
+}

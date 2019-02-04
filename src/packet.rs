@@ -32,5 +32,8 @@
 // 
 // Packet - parse / 
 
+include!(concat!(env!("OUT_DIR"), "/packet.rs"));
+
+
 #[test]
 fn test_write_full_test_event_with_file_content() {}

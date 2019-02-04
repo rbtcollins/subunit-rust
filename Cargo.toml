@@ -1,21 +1,27 @@
 [package]
-name = "subunit-rust"
-description = "A subunit v2 protocol implementation in Rust"
-version = "0.1.2"
 authors = ["Matthew Treinish <mtreinish@kortar.org>"]
+build = "build.rs"
+categories = ["development-tools::testing"]
+description = "A subunit v2 protocol implementation in Rust"
+keywords = ["subunit"]
 license = "Apache-2.0"
+name = "subunit-rust"
 readme = "README.md"
 repository = "https://github.com/mtreinish/subunit-rust"
-keywords = ["subunit"]
-categories = ["development-tools::testing"]
+version = "0.1.2"
 
 [badges]
 travis-ci = {repository = "mtreinish/subunit-rust"}
 
 [dependencies]
 chrono = "0.4"
+bitflags = "1"
 byteorder = "1"
 crc = "^1.0.0"
+pnet = "0.21"
+pnet_macros_support = "0.21"
 
-[dependencies.pnet]
-version = "0.21.0"
+
+[build-dependencies]
+pnet_macros = "0.21"
+syntex = "0.42"

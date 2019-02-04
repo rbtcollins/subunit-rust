@@ -14,8 +14,8 @@
 #![allow(clippy::cargo)]
 #![allow(clippy::unreadable_literal)]
 
-mod packet;
-
+#[macro_use]
+extern crate bitflags;
 extern crate byteorder;
 extern crate chrono;
 extern crate crc;
@@ -30,6 +30,10 @@ use std::io::Write;
 use byteorder::{BigEndian, ReadBytesExt, WriteBytesExt};
 use chrono::prelude::*;
 use crc::{crc32, Hasher32};
+
+
+pub mod packet;
+
 
 #[derive(Debug, Clone)]
 pub struct SizeError;
